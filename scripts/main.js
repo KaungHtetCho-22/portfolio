@@ -1,7 +1,7 @@
 const sections = ['themeToggleContainer', 'hero', 'about', 'skills', 'links', 'projects'];
 
 sections.forEach(section => {
-  fetch(`/portfolio/components/${section}.html`)
+  fetch(`/components/${section}.html`)
     .then(res => {
       if (!res.ok) {
         throw new Error(`Failed to fetch ${section}: ${res.status}`);
