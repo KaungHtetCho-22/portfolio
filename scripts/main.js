@@ -1,9 +1,16 @@
-const sections = ['head', 'hero', 'about', 'skills', 'links', 'projects', 'footer'];
+const sections = ['hero', 'about', 'skills', 'links', 'projects'];
 
-sections.forEach(section => {
-  fetch(`components/${section}.html`)
-    .then(res => res.text())
-    .then(data => {
-      document.getElementById(section).innerHTML = data;
-    });
+Promise.all(
+  sections.map(section =>
+    fetch(`components/${section}.html`)
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById(section).innerHTML = html;
+      })
+  )
+).then(() => {
+  lucide.createIcons();
+  setupThemeToggle();
+  revealSections();
+  setupRickRoll();
 });
