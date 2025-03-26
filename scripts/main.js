@@ -1,4 +1,4 @@
-const sections = ['themeToggleContainer', 'hero', 'about', 'skills', 'links', 'projects'];
+const sections = ['themeToggleContainer', 'hero', 'about', 'skills', 'links', 'projects','footer'];
 
 sections.forEach(section => {
   fetch(`/components/${section}.html`)
