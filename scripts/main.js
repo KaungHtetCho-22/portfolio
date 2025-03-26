@@ -1,11 +1,9 @@
-const sections = ['themeToggleContainer', 'hero', 'about', 'skills', 'links', 'projects','footer'];
+const sections = ['hero', 'about', 'skills', 'links', 'projects', 'footer'];
 
 sections.forEach(section => {
-  fetch(`/components/${section}.html`)
+  fetch(`components/${section}.html`)  // <-- relative path
     .then(res => {
-      if (!res.ok) {
-        throw new Error(`Failed to fetch ${section}: ${res.status}`);
-      }
+      if (!res.ok) throw new Error(`Failed to fetch ${section}: ${res.status}`);
       return res.text();
     })
     .then(html => {
@@ -15,6 +13,7 @@ sections.forEach(section => {
       console.error(err);
     });
 });
+
 
 const projects = [
   {
