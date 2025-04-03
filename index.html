@@ -282,7 +282,11 @@
 
     </style>
 </head>
+
+
 <body style="scroll-behavior: smooth;" class="bg-light dark:bg-dark text-dark dark:text-white min-h-screen flex flex-col font-['Inter'] transition-colors duration-300"></body>
+<canvas id="c" class="fixed top-0 left-0 w-full h-full -z-10"></canvas>
+
     <div class="absolute top-8 right-8 z-10">
         <button id="themeToggle" class="p-2 rounded-lg bg-dark dark:bg-light text-light dark:text-dark w-10 h-10 flex items-center justify-center">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
@@ -293,7 +297,6 @@
 
     <main class="flex-grow flex flex-col">
 
-        <canvas id="c" class="fixed top-0 left-0 w-full h-full -z-10"></canvas>
 
         <!-- Hero Section -->
         <section class="flex items-center justify-center min-h-screen">
