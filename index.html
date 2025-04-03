@@ -277,9 +277,13 @@
         position: absolute;
         top: 0;
         left: 0;
-        z-index: -10;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
         background: transparent;
+        pointer-events: none;
     }
+
 
 
 
@@ -788,9 +792,43 @@
 
     <script>
 
-        var w = c.width = window.innerWidth,
-        h = c.height = window.innerHeight,
-        ctx = c.getContext( '2d' ),
+    window.addEventListener('DOMContentLoaded', () => {
+        var c = document.getElementById('c');
+        var ctx = c.getContext('2d');
+        var w, h;
+
+        function resizeCanvas() {
+            c.width = c.offsetWidth;
+            c.height = c.offsetHeight;
+            w = c.width;
+            h = c.height;
+            opts.vanishPoint.x = w / 2;
+            opts.vanishPoint.y = h / 2;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        // var c = document.getElementById('c');
+        // var c = document.getElementById('c');
+        // var ctx = c.getContext('2d');
+        // var w, h;
+
+        // function resizeCanvas() {
+        //     c.width = c.offsetWidth;
+        //     c.height = c.offsetHeight;
+        // }
+        // window.addEventListener('resize', resizeCanvas);
+        // resizeCanvas();
+
+        // var w = c.width = window.innerWidth,
+        // h = c.height = window.innerHeight,
+        // ctx = c.getContext( '2d' ),
+
+        var c = document.getElementById('c');
+        // var ctx = c.getContext('2d');
+        // var w, h;
+
 
         opts = {
             
