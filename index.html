@@ -285,6 +285,8 @@
 
     <main class="flex-grow flex flex-col">
 
+        <canvas id="constellation" class="fixed inset-0 -z-10 w-full h-full"></canvas>
+
         <!-- Hero Section -->
         <section class="flex items-center justify-center min-h-screen">
             <div class="text-center max-w-4xl mx-auto px-4">
@@ -692,5 +694,82 @@
         createProjectTiles();
         
     </script>
+    
+    <script>
+        const canvas = document.getElementById('constellation');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        let particles = [];
+        const particleCount = 100;
+        const maxDistance = 120;
+        
+        function resizeCanvas() {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        
+        function createParticles() {
+          particles = [];
+          for (let i = 0; i < particleCount; i++) {
+            particles.push({
+              x: Math.random() * canvas.width,
+              y: Math.random() * canvas.height,
+              vx: (Math.random() - 0.5) * 1,
+              vy: (Math.random() - 0.5) * 1,
+              radius: Math.random() * 2 + 1,
+            });
+          }
+        }
+        
+        function drawParticles() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          particles.forEach(p => {
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+            ctx.fillStyle = '#ccc';
+            ctx.fill();
+          });
+        }
+        
+        function drawLines() {
+          for (let i = 0; i < particleCount; i++) {
+            for (let j = i + 1; j < particleCount; j++) {
+              const dx = particles[i].x - particles[j].x;
+              const dy = particles[i].y - particles[j].y;
+              const dist = Math.sqrt(dx * dx + dy * dy);
+              if (dist < maxDistance) {
+                ctx.beginPath();
+                ctx.moveTo(particles[i].x, particles[i].y);
+                ctx.lineTo(particles[j].x, particles[j].y);
+                ctx.strokeStyle = `rgba(204,204,204,${1 - dist / maxDistance})`;
+                ctx.stroke();
+              }
+            }
+          }
+        }
+        
+        function updateParticles() {
+          particles.forEach(p => {
+            p.x += p.vx;
+            p.y += p.vy;
+            if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+            if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+          });
+        }
+        
+        function animate() {
+          drawParticles();
+          drawLines();
+          updateParticles();
+          requestAnimationFrame(animate);
+        }
+        
+        createParticles();
+        animate();
+        </script>
+        
 </body>
 </html>
