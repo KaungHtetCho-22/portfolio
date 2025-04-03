@@ -272,6 +272,14 @@
         .dark .repo-action:hover {
             color: #e2e8f0;
         }
+
+        canvas#c {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -10;
+        }
+
     </style>
 </head>
 <body style="scroll-behavior: smooth;" class="bg-light dark:bg-dark text-dark dark:text-white min-h-screen flex flex-col font-['Inter'] transition-colors duration-300"></body>
@@ -285,7 +293,7 @@
 
     <main class="flex-grow flex flex-col">
 
-        <canvas id="constellation" class="fixed inset-0 -z-10 w-full h-full"></canvas>
+        <canvas id="c" class="fixed top-0 left-0 w-full h-full -z-10"></canvas>
 
         <!-- Hero Section -->
         <section class="flex items-center justify-center min-h-screen">
@@ -696,80 +704,155 @@
     </script>
     
     <script>
-        const canvas = document.getElementById('constellation');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        
-        let particles = [];
-        const particleCount = 100;
-        const maxDistance = 120;
-        
-        function resizeCanvas() {
-          canvas.width = window.innerWidth;
-          canvas.height = window.innerHeight;
+        const c = document.getElementById('c');
+        const ctx = c.getContext('2d');
+        let w = c.width = window.innerWidth;
+        let h = c.height = window.innerHeight;
+      
+        const opts = {
+          range: 180,
+          baseConnections: 3,
+          addedConnections: 5,
+          baseSize: 5,
+          minSize: 1,
+          dataToConnectionSize: 0.4,
+          sizeMultiplier: 0.7,
+          allowedDist: 40,
+          baseDist: 40,
+          addedDist: 30,
+          connectionAttempts: 100,
+          dataToConnections: 1,
+          baseSpeed: 0.04,
+          addedSpeed: 0.05,
+          baseGlowSpeed: 0.4,
+          addedGlowSpeed: 0.4,
+          rotVelX: 0.003,
+          rotVelY: 0.002,
+          repaintColor: '#111',
+          connectionColor: 'hsla(200,60%,light%,alp)',
+          rootColor: 'hsla(0,60%,light%,alp)',
+          endColor: 'hsla(160,20%,light%,alp)',
+          dataColor: 'hsla(40,80%,light%,alp)',
+          wireframeWidth: 0.1,
+          wireframeColor: '#88f',
+          depth: 250,
+          focalLength: 250,
+          vanishPoint: { x: w / 2, y: h / 2 }
+        };
+      
+        let squareRange = opts.range * opts.range,
+            squareAllowed = opts.allowedDist * opts.allowedDist,
+            mostDistant = opts.depth + opts.range,
+            sinX = sinY = 0, cosX = cosY = 0,
+            connections = [], toDevelop = [], data = [], all = [],
+            tick = 0, animating = false, Tau = Math.PI * 2;
+      
+        function squareDist(a, b) {
+          const dx = b.x - a.x, dy = b.y - a.y, dz = b.z - a.z;
+          return dx * dx + dy * dy + dz * dz;
         }
-        window.addEventListener('resize', resizeCanvas);
-        
-        function createParticles() {
-          particles = [];
-          for (let i = 0; i < particleCount; i++) {
-            particles.push({
-              x: Math.random() * canvas.width,
-              y: Math.random() * canvas.height,
-              vx: (Math.random() - 0.5) * 1,
-              vy: (Math.random() - 0.5) * 1,
-              radius: Math.random() * 2 + 1,
-            });
-          }
+      
+        function Connection(x, y, z, size) {
+          this.x = x; this.y = y; this.z = z;
+          this.size = size; this.screen = {};
+          this.links = []; this.isEnd = false;
+          this.glowSpeed = opts.baseGlowSpeed + opts.addedGlowSpeed * Math.random();
         }
-        
-        function drawParticles() {
-          ctx.clearRect(0, 0, canvas.width, canvas.height);
-          particles.forEach(p => {
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-            ctx.fillStyle = '#ccc';
-            ctx.fill();
-          });
-        }
-        
-        function drawLines() {
-          for (let i = 0; i < particleCount; i++) {
-            for (let j = i + 1; j < particleCount; j++) {
-              const dx = particles[i].x - particles[j].x;
-              const dy = particles[i].y - particles[j].y;
-              const dist = Math.sqrt(dx * dx + dy * dy);
-              if (dist < maxDistance) {
-                ctx.beginPath();
-                ctx.moveTo(particles[i].x, particles[i].y);
-                ctx.lineTo(particles[j].x, particles[j].y);
-                ctx.strokeStyle = `rgba(204,204,204,${1 - dist / maxDistance})`;
-                ctx.stroke();
-              }
+      
+        Connection.prototype.setScreen = function () {
+          let x = this.x, y = this.y, z = this.z;
+          let Y = y; y = y * cosX - z * sinX; z = z * cosX + Y * sinX;
+          let Z = z; z = z * cosY - x * sinY; x = x * cosY + Z * sinY;
+          this.screen.z = z + opts.depth;
+          this.screen.scale = opts.focalLength / this.screen.z;
+          this.screen.x = opts.vanishPoint.x + x * this.screen.scale;
+          this.screen.y = opts.vanishPoint.y + y * this.screen.scale;
+        };
+      
+        Connection.prototype.link = function () {
+          if (this.size < opts.minSize) return this.isEnd = true;
+          let links = [], attempts = opts.connectionAttempts;
+          while (links.length < opts.baseConnections + Math.random() * opts.addedConnections && --attempts > 0) {
+            let alpha = Math.random() * Math.PI, beta = Math.random() * Tau;
+            let len = opts.baseDist + opts.addedDist * Math.random();
+            let pos = {
+              x: this.x + len * Math.cos(alpha) * Math.sin(beta),
+              y: this.y + len * Math.sin(alpha) * Math.sin(beta),
+              z: this.z + len * Math.cos(beta)
+            };
+            if (pos.x ** 2 + pos.y ** 2 + pos.z ** 2 < squareRange) {
+              let pass = connections.every(c => squareDist(pos, c) >= squareAllowed) &&
+                         links.every(c => squareDist(pos, c) >= squareAllowed);
+              if (pass) links.push(pos);
             }
           }
+          if (!links.length) return this.isEnd = true;
+          for (const pos of links) {
+            const c = new Connection(pos.x, pos.y, pos.z, this.size * opts.sizeMultiplier);
+            this.links.push(c); connections.push(c); all.push(c); toDevelop.push(c);
+          }
+        };
+      
+        Connection.prototype.step = function () {
+          this.setScreen();
+          const glow = 30 + (tick * this.glowSpeed % 30);
+          this.screen.color = (this.isEnd ? opts.endColor : opts.connectionColor).replace('light', glow).replace('alp', .2 + (1 - this.screen.z / mostDistant) * .8);
+          for (let link of this.links) {
+            ctx.moveTo(this.screen.x, this.screen.y);
+            ctx.lineTo(link.screen.x, link.screen.y);
+          }
+        };
+      
+        Connection.prototype.draw = function () {
+          ctx.fillStyle = this.screen.color;
+          ctx.beginPath();
+          ctx.arc(this.screen.x, this.screen.y, this.screen.scale * this.size, 0, Tau);
+          ctx.fill();
+        };
+      
+        function init() {
+          connections = []; toDevelop = []; data = []; all = [];
+          const root = new Connection(0, 0, 0, opts.baseSize);
+          root.step = Connection.prototype.step;
+          connections.push(root); all.push(root); root.link();
+          while (toDevelop.length) toDevelop.shift().link();
+          if (!animating) { animating = true; animate(); }
         }
-        
-        function updateParticles() {
-          particles.forEach(p => {
-            p.x += p.vx;
-            p.y += p.vy;
-            if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-            if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
-          });
-        }
-        
+      
         function animate() {
-          drawParticles();
-          drawLines();
-          updateParticles();
           requestAnimationFrame(animate);
+          ctx.globalCompositeOperation = 'source-over';
+          ctx.fillStyle = opts.repaintColor;
+          ctx.fillRect(0, 0, w, h);
+      
+          tick++;
+          const rotX = tick * opts.rotVelX, rotY = tick * opts.rotVelY;
+          cosX = Math.cos(rotX); sinX = Math.sin(rotX);
+          cosY = Math.cos(rotY); sinY = Math.sin(rotY);
+      
+          ctx.globalCompositeOperation = 'lighter';
+          ctx.beginPath();
+          ctx.lineWidth = opts.wireframeWidth;
+          ctx.strokeStyle = opts.wireframeColor;
+      
+          all.forEach(obj => obj.step());
+          ctx.stroke();
+      
+          ctx.globalCompositeOperation = 'source-over';
+          all.sort((a, b) => b.screen.z - a.screen.z);
+          all.forEach(obj => obj.draw());
         }
-        
-        createParticles();
-        animate();
-        </script>
+      
+        window.addEventListener('resize', () => {
+          opts.vanishPoint.x = (w = c.width = window.innerWidth) / 2;
+          opts.vanishPoint.y = (h = c.height = window.innerHeight) / 2;
+          ctx.fillRect(0, 0, w, h);
+        });
+      
+        window.addEventListener('click', init);
+        init();
+    </script>
+      
         
 </body>
 </html>
