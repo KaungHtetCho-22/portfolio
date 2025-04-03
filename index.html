@@ -378,29 +378,42 @@
           
 
         <!-- About Me -->
+
+
         <section id="about" class="section py-20 bg-gray-100 dark:bg-gray-900">
             <div class="container mx-auto px-6">
-                <h2 class="text-3xl font-bold mb-16 text-center font-space-mono">About me....</h2>
-
+              <h2 class="text-3xl font-bold mb-16 text-center font-space-mono">About Me</h2>
+          
+              <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-12 bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 border border-white/10 dark:border-white/20">
                 
-                <div class="flex flex-col md:flex-row items-center justify-center space-y-12 md:space-y-0 md:space-x-16">
-                    <!-- Image with Glassmorphism -->
-                    <div class="relative w-48 h-48 md:w-56 md:h-56 p-2 bg-white/20 backdrop-blur-md rounded-full shadow-lg border border-white/30">
-                        <img src="assets/asset.jpeg" alt="Kaung Htet Cho" class="w-full h-full object-cover rounded-full shadow-lg transition-transform duration-300 hover:scale-105" />
-                    </div>
+                <!-- Profile Image -->
+                <div class="flex-shrink-0">
+                  <div class="w-40 h-40 md:w-52 md:h-52 rounded-full overflow-hidden shadow-lg border-4 border-blue-500">
+                    <!-- <img src="assets/asset.jpeg" alt="Kaung Htet Cho" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105" /> -->
+                    <img src="assets/asset.jpeg" alt="Kaung Htet Cho" class="w-full h-full object-cover rounded-full shadow-lg transition-transform duration-300 hover:scale-105" />
 
-                    <!-- Text Section -->
-                    <div class="max-w-xl text-center md:text-left bg-white/10 p-6 md:p-8 rounded-2xl shadow-lg backdrop-blur-md border border-white/20">
-                        <p class="about-text font-medium text-lg leading-relaxed text-gray-700 dark:text-gray-300">
-                            With a background in <span class="text-blue-500 font-semibold">factory automation</span>, I spent three years working in industrial settings before transitioning into 
-                            <span class="text-purple-500 font-semibold">AI</span>. Now, as a <span class="text-green-500 font-semibold">Master's student at AIT</span> specializing in 
-                            Mechatronics and Machine Intelligence, I’m focused on building expertise in <span class="text-yellow-500 font-semibold">computer vision</span> and 
-                            <span class="text-red-500 font-semibold">AI engineering</span>.
-                        </p>
-                    </div>
+                  </div>
                 </div>
+          
+                <!-- Description -->
+                <div class="text-center md:text-left space-y-4">
+                  <p class="text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed">
+                    I started out in <span class="text-blue-500 font-semibold">factory automation</span>, spending 3 years in the industrial world. Now I’m diving deep into 
+                    <span class="text-purple-500 font-semibold">AI</span> and <span class="text-yellow-500 font-semibold">computer vision</span> as a 
+                    <span class="text-green-500 font-semibold">Master’s student at AIT</span>.
+                  </p>
+                  <p class="text-md md:text-lg text-gray-600 dark:text-gray-400">
+                    I’m passionate about building intelligent systems—from smart factories to deep learning pipelines.
+                  </p>
+                  <p class="text-sm font-space-mono text-gray-500 dark:text-gray-400 italic">
+                    "Always learning, always building."
+                  </p>
+                </div>
+              </div>
             </div>
         </section>
+          
+          
 
 
 
@@ -433,6 +446,11 @@
             <div class="space-y-12 max-w-5xl mx-auto">
                 
                 <!-- Experience Item -->
+                <!-- <div class="flex items-center gap-2">
+                    <h3 class="text-2xl font-bold">Research Assistant</h3>
+                    <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 group-hover:translate-y-1 transition-transform duration-300"></i>
+                  </div>
+                   -->
                 <div onclick="showRAOverlay()" class="relative group cursor-pointer bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 p-6 border-l-8 border-blue-500">
 
                 <!-- <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg transition-transform transform hover:-translate-y-1 hover:shadow-2xl p-6 border-l-8 border-blue-500"> -->
@@ -440,9 +458,15 @@
                     <div>
                     <h3 class="text-2xl font-bold mb-1">Research Assistant</h3>
                     <p class="text-gray-600 dark:text-gray-400">AIT AI Center, Asian Institute of Technology</p>
+                    <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 group-hover:translate-y-1 transition-transform duration-300"></i>
                     </div>
                     <span class="text-sm font-space-mono text-gray-500 dark:text-gray-400">Apr 2024 - Present</span>
-                </div>
+                </div> 
+
+                
+
+                  
+                
                 <p class="mt-4 text-gray-700 dark:text-gray-300">Working on AI research projects focusing on computer vision and ML engineering.</p>
                 <ul class="mt-4 ml-6 space-y-2 text-sm text-gray-700 dark:text-gray-400">
                     <li class="flex items-start gap-2">
@@ -484,6 +508,8 @@
                       <div>
                         <h3 class="text-2xl font-bold mb-1">Factory Automation Technician</h3>
                         <p class="text-gray-600 dark:text-gray-400">JFE Meranti Myanmar</p>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 group-hover:translate-y-1 transition-transform duration-300"></i>
+
                       </div>
                       <span class="text-sm font-space-mono text-gray-500 dark:text-gray-400">Sep 2019 - Sep 2022</span>
                     </div>
@@ -1319,9 +1345,8 @@
         raOverlay.classList.add('hidden');
         }
     </script>
-    
-  
-      
+
+
 
 </body>
 </html>
