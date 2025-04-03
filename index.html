@@ -296,6 +296,9 @@
 
     </style>
 </head>
+
+
+  
 <body style="scroll-behavior: smooth;" class="bg-light dark:bg-dark text-dark dark:text-white min-h-screen flex flex-col font-['Inter'] transition-colors duration-300"></body>
     <div class="absolute top-8 right-8 z-10">
         <button id="themeToggle" class="p-2 rounded-lg bg-dark dark:bg-light text-light dark:text-dark w-10 h-10 flex items-center justify-center">
@@ -460,16 +463,19 @@
                 </div>
         
                 <!-- Experience Item -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg transition-transform transform hover:-translate-y-1 hover:shadow-2xl p-6 border-l-8 border-gray-500">
-                <div class="flex flex-col sm:flex-row justify-between">
-                    <div>
-                    <h3 class="text-2xl font-bold mb-1">Factory Automation Technician</h3>
-                    <p class="text-gray-600 dark:text-gray-400">JFE Meranti Myanmar</p>
+                <div onclick="showOverlay()" class="relative group cursor-pointer bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 p-6 border-l-8 border-gray-500">
+                    <div class="flex flex-col sm:flex-row justify-between">
+                      <div>
+                        <h3 class="text-2xl font-bold mb-1">Factory Automation Technician</h3>
+                        <p class="text-gray-600 dark:text-gray-400">JFE Meranti Myanmar</p>
+                      </div>
+                      <span class="text-sm font-space-mono text-gray-500 dark:text-gray-400">Sep 2019 - Sep 2022</span>
                     </div>
-                    <span class="text-sm font-space-mono text-gray-500 dark:text-gray-400">Sep 2019 - Sep 2022</span>
+                    <p class="mt-4 text-gray-700 dark:text-gray-300">Installed and commissioned precision machinery with international collaboration.</p>
                 </div>
-                <p class="mt-4 text-gray-700 dark:text-gray-300">Installed and commissioned precision machinery with international collaboration.</p>
-                </div>
+                  
+
+                  
         
                 <!-- Experience Item -->
                 <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg transition-transform transform hover:-translate-y-1 hover:shadow-2xl p-6 border-l-8 border-gray-500">
@@ -572,6 +578,21 @@
                 </nav>
             </div>
         </section> -->
+
+        <div id="jobOverlay" class="fixed inset-0 z-[999] hidden items-center justify-center bg-black/80 backdrop-blur-md px-4">
+            <div class="relative text-center max-w-2xl p-6 bg-white dark:bg-gray-900 rounded-2xl shadow-2xl">
+              <button onclick="hideOverlay()" class="absolute top-4 right-4 text-gray-500 hover:text-white">
+                <i data-lucide="x" class="w-6 h-6"></i>
+              </button>
+              <img src="assets/factory-preview.jpg" alt="Factory Work"
+                   class="w-full max-w-xl mx-auto h-auto rounded-xl shadow-lg mb-6 object-cover" />
+              <p class="text-gray-800 dark:text-gray-200 text-base sm:text-lg leading-relaxed">
+                Hands-on automation engineer: handled PLC control panels, sensor arrays, and robotic arms for precision material handling.
+              </p>
+            </div>
+        </div>
+          
+
 
     </main>
 
@@ -1213,6 +1234,22 @@
         window.addEventListener( 'click', init );
 
     </script>
+
+    <script>
+        const overlay = document.getElementById('jobOverlay');
+    
+        function showOverlay() {
+        overlay.classList.remove('hidden');
+        overlay.classList.add('flex');
+        }
+    
+        function hideOverlay() {
+        overlay.classList.remove('flex');
+        overlay.classList.add('hidden');
+        }
+    </script>
+  
+      
 
 </body>
 </html>
