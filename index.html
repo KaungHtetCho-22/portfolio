@@ -305,6 +305,16 @@
         </button>
     </div>
 
+    <!-- Side Navbar -->
+    <div class="fixed left-6 top-1/2 -translate-y-1/2 z-50 hidden sm:flex flex-col items-center space-y-8 p-4 bg-[#fcfbf7] rounded-xl shadow-lg">
+
+    <!-- <div class="fixed left-4 top-1/2 -translate-y-1/2 z-50 hidden sm:flex flex-col items-center space-y-6"> -->
+        <a href="mailto:kaunghtetcho.ise@gmail.com" class="text-gray-500 hover:text-blue-500"><i data-lucide="mail" class="w-8 h-8"></i></a>
+        <a href="https://www.linkedin.com/in/kaunghtetcho/" target="_blank" class="text-gray-500 hover:text-blue-500"><i data-lucide="linkedin" class="w-8 h-8"></i></a>
+        <a href="https://github.com/KaungHtetCho-22" target="_blank" class="text-gray-500 hover:text-blue-500"><i data-lucide="github" class="w-8 h-8"></i></a>
+    </div>
+
+
     <main class="flex-grow flex flex-col">
 
         <!-- <canvas id="c" class="fixed inset-0 -z-10 w-full h-full"></canvas> -->
@@ -336,7 +346,9 @@
               <!-- Right: Animation Canvas -->
             <div class="relative min-h-[400px] md:min-h-[500px] w-full flex items-center justify-center">
                 <!-- <canvas id="c" class="w-full h-full max-w-[500px] max-h-[500px]"></canvas> -->
-                <canvas id="c" width="500" height="500" class="w-[500px] h-[500px]"></canvas>
+                <!-- <canvas id="c" width="500" height="500" class="w-[500px] h-[500px]"></canvas> -->
+                <canvas id="c" class="w-full h-full max-w-[400px] max-h-[400px] sm:max-w-[500px] sm:max-h-[500px]"></canvas>
+
 
             </div>
           
@@ -528,7 +540,7 @@
 
 
         <!-- Navigation Links Section -->
-        <section id="Connect" class="section py-16">
+        <!-- <section id="Connect" class="section py-16">
             <div class="container mx-auto px-4">
                 <h2 class="text-3xl font-bold mb-16 text-center font-space-mono">Connect with me....</h2>
                 <nav class="nav-container">
@@ -550,11 +562,11 @@
                     </a>
                 </nav>
             </div>
-        </section>
+        </section> -->
 
     </main>
 
-    
+
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -812,13 +824,29 @@
 
     <script>
 
-        var w = c.width,
-        h = c.height,
+        // Auto-resize canvas based on container
+        const canvas = document.getElementById('c');
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+
+        var w = canvas.width,
+            h = canvas.height,
+            ctx = canvas.getContext('2d'),
 
 
-        // var w = c.width = window.innerWidth,
-        // h = c.height = window.innerHeight,
-        ctx = c.getContext( '2d' ),
+        // Auto-resize canvas based on container
+        // const canvas = document.getElementById('c');
+        // canvas.width = canvas.offsetWidth;
+        // canvas.height = canvas.offsetHeight;
+
+
+        // var w = c.width,
+        // h = c.height,
+
+
+        // // var w = c.width = window.innerWidth,
+        // // h = c.height = window.innerHeight,
+        // ctx = c.getContext( '2d' ),
 
         opts = {
             
