@@ -274,12 +274,13 @@
         }
 
         canvas#c {
+        background: transparent;
         position: absolute;
         top: 0;
         left: 0;
-        z-index: -10;
-        background: transparent;
-    }
+        pointer-events: none;
+        }
+
 
 
     </style>
@@ -295,40 +296,41 @@
 
     <main class="flex-grow flex flex-col">
 
-        <!-- <canvas id="c"></canvas> -->
-
-
         <canvas id="c" class="fixed inset-0 -z-10 w-full h-full"></canvas>
 
         <!-- Hero Section -->
-        <section class="flex items-center justify-center min-h-screen">
-            <div class="text-center max-w-4xl mx-auto px-4">
-                <h1 class="text-4xl md:text-6xl lg:text-7xl font-black mb-2 tracking-tighter leading-none text-shadow-glow-subtle">
-                    Kaung Htet Cho
-                    <!-- Kaung Htet Cho <span class="font-garamond font-normal">Kaung Htet Cho</span> -->
-                </h1>
-                <p class="text-xl md:text-2xl font-semibold mb-8">
-                    <span class="text-gray-600 dark:text-[#C9C9C9]">AI engineer</span>
-                    <!-- <span class="bg-gradient-to-r from-[#9C83FF] to-[#FF9051] text-transparent bg-clip-text">Designer</span> -->
-                </p>
 
-                <!-- Buttons -->
-                <div class="flex justify-center space-x-4 mb-12">
-                    <a href="https://github.com/KaungHtetCho-22/" class="button button-filled flex items-center space-x-2">
-                        <span>GitHub</span>
-                        <i data-lucide="github" class="w-5 h-5"></i>
-                    </a>
-                    <a href="mailto:kaunghtetcho.ise@gmail.com" class="button button-outlined flex items-center space-x-2">
-                        <span>Contact Me</span>
-                        <i data-lucide="mail" class="w-5 h-5"></i>
-                    </a>
+        <section class="flex items-center min-h-screen bg-light dark:bg-dark px-6 md:px-20">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-7xl items-center">
+              
+              <!-- Left: Text and Buttons -->
+              <div class="space-y-6">
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter leading-none text-shadow-glow-subtle">
+                  Kaung Htet Cho
+                </h1>
+                <p class="text-xl md:text-2xl font-semibold text-gray-600 dark:text-[#C9C9C9]">
+                  AI engineer
+                </p>
+                <div class="flex space-x-4">
+                  <a href="https://github.com/KaungHtetCho-22/" class="button button-filled flex items-center space-x-2">
+                    <span>GitHub</span>
+                    <i data-lucide="github" class="w-5 h-5"></i>
+                  </a>
+                  <a href="mailto:kaunghtetcho.ise@gmail.com" class="button button-outlined flex items-center space-x-2">
+                    <span>Contact Me</span>
+                    <i data-lucide="mail" class="w-5 h-5"></i>
+                  </a>
                 </div>
+              </div>
+          
+              <!-- Right: Animation Canvas -->
+              <div class="relative h-[400px] md:h-[600px] w-full">
+                <canvas id="c" class="absolute top-0 left-0 w-full h-full z-[-1]"></canvas>
+              </div>
+          
             </div>
-            <!-- Add the chevron-down icon -->
-            <div class="chevron-down">
-                <i data-lucide="chevron-down" class="w-8 h-8"></i>
-            </div>
-        </section>
+          </section>
+          
 
         <!-- About Me -->
         <section id="about" class="section py-20 bg-gray-100 dark:bg-gray-900">
@@ -1140,6 +1142,6 @@
         window.addEventListener( 'click', init );
 
     </script>
-    
+
 </body>
 </html>
