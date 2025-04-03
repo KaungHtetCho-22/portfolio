@@ -274,7 +274,7 @@
         }
     </style>
 </head>
-<body style="scroll-behavior: smooth;" class="bg-light dark:bg-dark text-dark dark:text-white min-h-screen flex flex-col font-['Inter'] transition-colors duration-300"></body>
+<body class="bg-light dark:bg-dark text-dark dark:text-white min-h-screen flex flex-col font-['Inter'] transition-colors duration-300"></body>
     <div class="absolute top-8 right-8 z-10">
         <button id="themeToggle" class="p-2 rounded-lg bg-dark dark:bg-light text-light dark:text-dark w-10 h-10 flex items-center justify-center">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
@@ -364,7 +364,7 @@
         </section>
 
         <!-- Working Experience Section - Stylish Redesign -->
-        <section id="experience" class="section py-24 bg-gradient-to-b from-gray-100 to-white dark:from-gray-900 dark:to-black">
+        <section id="experience" class="section py-20 bg-gray-100 dark:bg-gray-900">
             <div class="container mx-auto px-4 sm:px-16">
                 <h2 class="text-3xl font-bold mb-16 text-center font-space-mono">Career Hightlights....</h2>
             
@@ -531,7 +531,7 @@
     </script>
 </head>
 
-<body style="scroll-behavior: smooth;" class="bg-light dark:bg-dark text-dark dark:text-white min-h-screen flex flex-col font-['Inter'] transition-colors duration-300">
+<body class="bg-light dark:bg-dark text-dark dark:text-white min-h-screen flex flex-col font-['Inter'] transition-colors duration-300">
     <script>
         lucide.createIcons();
         
@@ -656,7 +656,7 @@
             const projectsContainer = document.querySelector('#projects .grid');
             projects.forEach(project => {
                 const tile = document.createElement('div');
-                tile.className = 'project-tile transition-all duration-300 hover:scale-[1.02] hover:z-10';
+                tile.className = 'project-tile';
                 tile.innerHTML = `
                     <div class="project-thumbnail mb-4">
                         <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover">
