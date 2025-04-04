@@ -356,13 +356,17 @@
               </div>
           
               <!-- Right: Animation Canvas -->
-            <div class="relative min-h-[400px] md:min-h-[500px] w-full flex items-center justify-center">
+            <!-- <div class="relative min-h-[400px] md:min-h-[500px] w-full flex items-center justify-center"> -->
                 <!-- <canvas id="c" class="w-full h-full max-w-[500px] max-h-[500px]"></canvas> -->
                 <!-- <canvas id="c" width="500" height="500" class="w-[500px] h-[500px]"></canvas> -->
-                <canvas id="c" class="w-full h-full max-w-[400px] max-h-[400px] sm:max-w-[500px] sm:max-h-[500px]"></canvas>
+                <!-- <canvas id="c" class="w-full h-full max-w-[400px] max-h-[400px] sm:max-w-[500px] sm:max-h-[500px]"></canvas>
 
 
+            </div> -->
+            <div class="relative w-full h-[300px] sm:h-[400px] md:h-[500px] flex items-center justify-center">
+                <canvas id="c" class="w-full h-full max-w-[500px] max-h-[500px]"></canvas>
             </div>
+              
           
         </section>
           
@@ -621,21 +625,27 @@
             </div>
         </section> -->
 
-        <div id="jobOverlay" class="fixed inset-0 z-[999] hidden items-center justify-center bg-black/80 backdrop-blur-md px-4">
+        <!-- <div id="jobOverlay" class="fixed inset-0 z-[999] hidden items-center justify-center bg-black/80 backdrop-blur-md px-4"> -->
+        <div id="jobOverlay" class="fixed inset-0 z-[999] hidden flex-col items-center justify-start overflow-y-auto py-6 sm:py-8 px-4 sm:px-6">
+
             <div class="relative text-center max-w-2xl p-6 bg-white dark:bg-gray-900 rounded-2xl shadow-2xl">
-              <button onclick="hideOverlay()" class="absolute top-2 right-2 text-gray-500 hover:text-white">
+                <button onclick="hideOverlay()" class="absolute top-2 right-2 text-gray-500 hover:text-white">
                 <i data-lucide="x" class="w-6 h-6"></i>
-              </button>
-              <img src="assets/factory-preview.jpg" alt="Factory Work"
-                   class="w-full max-w-xl mx-auto h-auto rounded-xl shadow-lg mb-6 object-cover" />
-              <p class="text-gray-800 dark:text-gray-200 text-base sm:text-lg leading-relaxed">
+                </button>
+                <!-- <img src="assets/factory-preview.jpg" alt="Factory Work"
+                   class="w-full max-w-xl mx-auto h-auto rounded-xl shadow-lg mb-6 object-cover" /> -->
+                <img src="assets/factory-preview.jpg" class="w-full h-auto max-w-full rounded-xl shadow-lg mb-6 object-cover">
+
+                <p class="text-gray-800 dark:text-gray-200 text-base sm:text-lg leading-relaxed">
                 Happy factory life with my collegues. 
-              </p>
+                </p>
             </div>
         </div>
 
         <!-- Research Assistant Fullscreen Modal -->
-        <div id="raOverlay" class="fixed inset-0 z-[999] hidden items-center justify-center bg-black/80 backdrop-blur-md px-4 py-8 overflow-y-auto">
+        <!-- <div id="raOverlay" class="fixed inset-0 z-[999] hidden items-center justify-center bg-black/80 backdrop-blur-md px-4 py-8 overflow-y-auto"> -->
+        <div id="raOverlay" class="fixed inset-0 z-[999] hidden flex-col items-center justify-start overflow-y-auto py-6 sm:py-8 px-4 sm:px-6">
+
             <div class="relative w-full max-w-4xl bg-white dark:bg-gray-900 rounded-2xl shadow-2xl p-6 space-y-8">
             <button onclick="hideRAOverlay()" class="absolute top-4 right-4 text-gray-500 hover:text-white">
                 <i data-lucide="x" class="w-6 h-6"></i>
