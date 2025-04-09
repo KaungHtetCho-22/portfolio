@@ -455,9 +455,10 @@
                     <img src="https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/amazonwebservices.svg" alt="AWS" class="tech-icon">
                     <img src="https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/github.svg" alt="Git" class="tech-icon">
                     <img src="https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/gitlab.svg" alt="GitLab" class="tech-icon">
-                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/pytorch.svg" alt="GitLab" class="tech-icon">
-                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/dvc.svg" alt="GitLab" class="tech-icon">
-                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/openaigym.svg" alt="GitLab" class="tech-icon">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/pytorch.svg" alt="pytorch" class="tech-icon">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/dvc.svg" alt="dvc" class="tech-icon">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/openaigym.svg" alt="openaigym" class="tech-icon">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/langchain.svg" alt="langchain" class="tech-icon">
                 </div>
             </div>
         </section>
@@ -511,21 +512,8 @@
                     </li>
                 </ul>
                 </div>
-<!-- 
-                <div onclick="showRAOverlay()" class="relative group cursor-pointer bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 p-6 border-l-8 border-blue-500">
-                    <div class="flex flex-col sm:flex-row justify-between">
-                      <div>
-                        <h3 class="text-2xl font-bold mb-1">Research Assistant</h3>
-                        <p class="text-gray-600 dark:text-gray-400">AIT AI Center, Asian Institute of Technology</p>
-                      </div>
-                      <span class="text-sm font-space-mono text-gray-500 dark:text-gray-400">Apr 2024 - Present</span>
-                    </div>
-                    <p class="mt-4 text-gray-700 dark:text-gray-300">
-                      Working on AI research projects focusing on computer vision and ML engineering.
-                    </p>
-                  </div> -->
+
                   
-        
                 <!-- Experience Item -->
                 <div onclick="showOverlay()" class="relative group cursor-pointer bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 p-6 border-l-8 border-gray-500">
                     <div class="flex flex-col sm:flex-row justify-between">
@@ -618,32 +606,6 @@
                 </div>
             </div>
         </section>
-
-
-        <!-- Navigation Links Section -->
-        <!-- <section id="Connect" class="section py-16">
-            <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold mb-16 text-center font-space-mono">Connect with me....</h2>
-                <nav class="nav-container">
-                    <a href="https://github.com/KaungHtetCho-22/" class="nav-link text-xl md:text-2xl text-gray-600 dark:text-gray-400 font-bold">
-                        <i data-lucide="github" class="w-6 h-6"></i>
-                        Github
-                    </a>
-                    <a href="/resume" class="nav-link text-xl md:text-2xl text-gray-600 dark:text-gray-400 font-bold">
-                        <i data-lucide="file-text" class="w-6 h-6"></i>
-                        Resume
-                    </a>
-                    <a href="https://www.linkedin.com/in/kaunghtetcho/" class="nav-link text-xl md:text-2xl text-gray-600 dark:text-gray-400 font-bold">
-                        <i data-lucide="linkedin" class="w-6 h-6"></i>
-                        LinkedIn
-                    </a>
-                    <a href="mailto:kaunghtetcho.ise@gmail.com" class="nav-link text-xl md:text-2xl text-gray-600 dark:text-gray-400 font-bold">
-                        <i data-lucide="mail" class="w-6 h-6"></i>
-                        Contact
-                    </a>
-                </nav>
-            </div>
-        </section> -->
 
         <!-- <div id="jobOverlay" class="fixed inset-0 z-[999] hidden items-center justify-center bg-black/80 backdrop-blur-md px-4"> -->
         <div id="jobOverlay" class="fixed inset-0 z-[999] hidden flex-col items-center justify-start overflow-y-auto py-6 sm:py-8 px-4 sm:px-6">
@@ -820,31 +782,74 @@
         const projects = [
             {
                 title: "Rekognition AWS",
-                description: "This was my project for Cloud Computing Coursework at AIT",
+                description: "Part of AIT's Cloud Computing coursework project",
+                highlights: [
+                "Built a face recognition web app using AWS Rekognition service",
+                "Implemented a serverless architecture with AWS Lambda and API Gateway",
+                "Used Amazon S3 to upload and store images for processing",
+                "Configured IAM roles and policies to securely enable AWS services and KMS encryptions for privacy",
+                "Integrated CloudFormation to provoke all services as Infrastruce as Code (IaC)",
+            ],
                 url: "https://github.com/KaungHtetCho-22/Face-recognition-on-AWS",
-                image: "https://opengraph.githubassets.com/1/KaungHtetCho-22/Face-recognition-on-AWS"
+                image: "https://opengraph.githubassets.com/1/KaungHtetCho-22/Face-recognition-on-AWS",
+                pdf: "assets/pdfs/aws.pdf"
+
             },
             {
                 title: "Deep reinforcement learning - 2DOF robot arm",
-                description: "This was my project for Deep Reinforcement Learning Coursework at AITS",
+                description: "Part of AIT’s Deep Reinforcement Learning coursework",
+                highlights: [
+                "Implemented a Deep Reinforcement Learning (DRL) agent to control a 2-DOF robotic arm in simulation",
+                "Created Stable-Baselines3 custom environment to simulate robot arm kinematics and reward-based training",
+                "Trained the agent using multiple policies (PPO/A2C) wtih Stable-Baselines3",
+                "Designed a reward function to guide the robot's end-effector to reach target positions",
+                "Visualized learning progress and agent behavior using Matplotlib and real-time rendering",
+            ],
                 url: "https://github.com/KaungHtetCho-22/2d-robot-arm-2DoF-DRL",
-                image: "https://opengraph.githubassets.com/2/KaungHtetCho-22/2d-robot-arm-2DoF-DRL"
+                image: "https://opengraph.githubassets.com/2/KaungHtetCho-22/2d-robot-arm-2DoF-DRL",
+                pdf: "assets/pdfs/drl.pdf"
+
             },
             {
                 title: "Computer Vision : Football Match Analyzer",
-                description: "This was my project for CV Coursework at the AIT",
+                description: "Part of AIT's Computer Vision coursework",
+                highlights: [
+                "Built a computer vision pipeline to detect, track, and analyze football players and the ball using YOLOv5 and ByteTrack",
+                "Implemented automatic team assignment through K-means clustering on jersey colors",
+                "Estimated player speed and distance using perspective transformation and real-world coordinate mapping",
+                "Visualized ball control percentages and player stats (speed, distance) over time directly on video frames",
+                "Combined object tracking with color-based clustering to reduce ID switches and improve team-based analytics"
+                ],
                 url: "https://github.com/KaungHtetCho-22/football_match_analysis",
-                image: "https://opengraph.githubassets.com/3/KaungHtetCho-22/football_match_analysis"
+                image: "https://opengraph.githubassets.com/3/KaungHtetCho-22/football_match_analysis",
+                pdf: "assets/pdfs/cv.pdf"
+
             },
             {
                 title: "Natural Language Processing : Medical QA",
-                description: "This was my project for NLP Coursework at the AIT",
+                description: "Part of AIT’s NLP coursework",
+                highlights: [
+                "Developed a Medical Question Answering system using Retrieval-Augmented Generation (RAG)",
+                "Utilized LangChain to orchestrate prompt templates, retrieval chains, and LLM responses",
+                "Employed FAISS VectorStore to store and search medical textbook embeddings for relevant context",
+                "Trained BERT-based models to classify user inputs for emergency detection (Triage) and medical relevance",
+                "Implemented LLM-based answer generation using T5, BioBERT, DialoGPT, and BART",
+                "Ingested medical textbooks like Davidson’s, Harrison’s, and Cecil’s as retrieval sources",
+                "Designed a multi-step pipeline: Classification → Retrieval → Generation → Response",
+                "Evaluated both classification and generation models using precision, recall, relevancy, and human judgment",
+                ],
+
                 url: "https://github.com/KaungHtetCho-22/medicalQA",
-                image: "https://opengraph.githubassets.com/4/KaungHtetCho-22/medicalQA"
+                image: "https://opengraph.githubassets.com/4/KaungHtetCho-22/medicalQA",
+                pdf: "assets/pdfs/nlp.pdf"
+
             },
             {
-                title: "Machine Learning: Project",
-                description: "STILL WORK IN PROGRESS",
+                title: "Machine Learning: Carbon Emission Detection",
+                description: "Part of AIT’s NLP coursework",
+                highlights: [
+                    "STILL WORKING IN PROGRESS"
+                ],
                 url: "https://github.com/KaungHtetCho-22/Decarbonize-TH",
                 image: "https://opengraph.githubassets.com/5/KaungHtetCho-22/Decarbonize-TH"
             },
@@ -852,45 +857,92 @@
             
         ];
 
-        // Function to create project tiles
         function createProjectTiles() {
-            const projectsContainer = document.querySelector('#projects .grid');
-            projects.forEach(project => {
-                const tile = document.createElement('div');
-                tile.className = 'project-tile transition-all duration-300 hover:scale-[1.02] hover:z-10';
-                tile.innerHTML = `
-                    <div class="project-thumbnail mb-4">
-                        <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover">
-                        <div class="redirect-icon">
-                            <i data-lucide="external-link"></i>
-                        </div>
+        const projectsContainer = document.querySelector('#projects .grid');
+        projects.forEach(project => {
+            const tile = document.createElement('div');
+            tile.className = 'project-tile transition-all duration-300 hover:scale-[1.02] hover:z-10';
+
+            // Optional: Create bullet list from highlights array
+            let highlightsHTML = '';
+            if (project.highlights && project.highlights.length > 0) {
+                highlightsHTML = '<ul class="text-sm text-gray-600 dark:text-gray-400 mb-4 list-disc list-inside">';
+                project.highlights.forEach(item => {
+                    highlightsHTML += `<li>${item}</li>`;
+                });
+                highlightsHTML += '</ul>';
+            }
+
+            // tile.innerHTML = `
+            //     <div class="project-thumbnail mb-4">
+            //         <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover">
+            //         <div class="redirect-icon">
+            //             <i data-lucide="external-link"></i>
+            //         </div>
+            //     </div>
+            //     <h3 class="text-xl font-bold mb-2">${project.title}</h3>
+            //     <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">${project.description}</p>
+            //     ${highlightsHTML}
+            //     <a href="${project.url}" target="_blank" class="read-more">
+            //         find more
+            //         <i data-lucide="github"></i>
+            //     </a>
+            //     <div class="repo-actions">
+            //         <a href="${project.url}/stargazers" target="_blank" class="repo-action">
+            //             <i data-lucide="star"></i>
+            //             Star
+            //         </a>
+            //         <a href="${project.url}/fork" target="_blank" class="repo-action">
+            //             <i data-lucide="git-fork"></i>
+            //             Fork
+            //         </a>
+            //     </div>
+            // `;
+
+            tile.innerHTML = `
+                <div class="project-thumbnail mb-4">
+                    <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover">
+                    <div class="redirect-icon">
+                        <i data-lucide="external-link"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">${project.title}</h3>
-                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">${project.description}</p>
-                    <a href="${project.url}" target="_blank" class="read-more">
-                        find more   
-                        <i data-lucide="github"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">${project.title}</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">${project.description}</p>
+                ${highlightsHTML}
+                ${project.pdf ? `
+                    <a href="${project.pdf}" target="_blank" class="download-pdf inline-block text-sm text-blue-600 dark:text-blue-400 underline mb-2">
+                        Download Report
                     </a>
-                    <div class="repo-actions">
-                        <a href="${project.url}/stargazers" target="_blank" class="repo-action">
-                            <i data-lucide="star"></i>
-                            Star
-                        </a>
-                        <a href="${project.url}/fork" target="_blank" class="repo-action">
-                            <i data-lucide="git-fork"></i>
-                            Fork
-                        </a>
-                    </div>
-                `;
-                const thumbnail = tile.querySelector('.project-thumbnail');
-                thumbnail.addEventListener('click', () => window.open(project.url, '_blank'));
-                projectsContainer.appendChild(tile);
-            });
-            lucide.createIcons();
-        }
+                ` : ''}
+                <a href="${project.url}" target="_blank" class="read-more block mb-2">
+                    find more
+                    <i data-lucide="github"></i>
+                </a>
+                <div class="repo-actions flex gap-4">
+                    <a href="${project.url}/stargazers" target="_blank" class="repo-action flex items-center gap-1">
+                        <i data-lucide="star"></i>
+                        Star
+                    </a>
+                    <a href="${project.url}/fork" target="_blank" class="repo-action flex items-center gap-1">
+                        <i data-lucide="git-fork"></i>
+                        Fork
+                    </a>
+                </div>
+            `;
+
+
+            const thumbnail = tile.querySelector('.project-thumbnail');
+            thumbnail.addEventListener('click', () => window.open(project.url, '_blank'));
+            projectsContainer.appendChild(tile);
+        });
+        lucide.createIcons();
+    }
+
 
         // Call the function to create project tiles
         createProjectTiles();
+
+        
         
     </script>
 
